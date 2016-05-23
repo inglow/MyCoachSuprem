@@ -1,22 +1,23 @@
 package com.example.inglow.mycoachsuprem;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import com.example.inglow.mycoachsuprem.prog.Coach;
 
@@ -36,57 +37,62 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-///S
 
-public class MyCoachSuprem extends AppCompatActivity
+public class LesCoachs extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private static ArrayList<Coach> uneListe=new ArrayList<Coach>();
+    private static ArrayList<Coach> uneListe = new ArrayList<Coach>();
     private ListView affListe;
-    private ImageView ImageView;
+    private Button call;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_coach_suprem);
+        setContentView(R.layout.activity_les_coachs);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+
+        this.affListe = (ListView) findViewById(R.id.idListe);
 
 
 
-        this.affListe=(ListView)findViewById(R.id.idListe);
 
         // création d'un processus pour l'exécution de la tache asynchrone
-        Thread unT=new Thread(new Runnable() {
+        Thread unT = new Thread(new Runnable() {
             @Override
             public void run() {
                 //instanciation de la classe ExecLister
-                ExecLister unExec=new ExecLister();
+                ExecLister unExec = new ExecLister();
                 unExec.execute();
                 //ici : affichage une fois le processus de la tache terminé
 
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        final ArrayList<HashMap<String, String>> donnees=
+                        final ArrayList<HashMap<String, String>> donnees =
                                 new ArrayList<HashMap<String, String>>();
                         // traitement de la liste des produits
-                        for (Coach unProd : uneListe){
-                            HashMap<String, String> uneMap=
+                        for (Coach unProd : uneListe) {
+                            HashMap<String, String> uneMap =
                                     new HashMap<String, String>();
-                            uneMap.put("nom",unProd.getNom());
-                            uneMap.put("prenom",unProd.getPrenom());
-                            uneMap.put("email",unProd.getEmail());
-                            uneMap.put("avatar",unProd.getAvatar());
-                            uneMap.put("cp",unProd.getCp()+"");
-                            uneMap.put("téléphone",unProd.getTelephone()+"");
+                            uneMap.put("nom", unProd.getNom());
+                            uneMap.put("prenom", unProd.getPrenom());
+                            uneMap.put("email", unProd.getEmail());
+                            uneMap.put("avatar", unProd.getAvatar());
+                            uneMap.put("cp", unProd.getCp() + "");
+                            uneMap.put("téléphone", unProd.getTelephone() + "");
                             donnees.add(uneMap);
                         }
 
 
                         // construction des intitulés
-                        String [] from={"nom","prenom", "email", "avatar", "cp", "telephone"};
-                        int [] to = {R.id.idnom, R.id.idprenom, R.id.idemail2,R.id.idavatar,R.id.idcp,R.id.idtelephone};
+                        String[] from = {"nom", "prenom", "email", "avatar", "cp", "telephone"};
+                        int[] to = {R.id.idnom, R.id.idprenom, R.id.idemail2, R.id.idavatar, R.id.idcp, R.id.idtelephone};
                         // définition de l'adaptateur de l'affichage
-                        SimpleAdapter unAdapter=new SimpleAdapter(getApplicationContext(), donnees
-                                ,R.layout.affiche_liste_coach, from,to);
+                        SimpleAdapter unAdapter = new SimpleAdapter(getApplicationContext(), donnees
+                                , R.layout.affiche_liste_coach, from, to);
                         affListe.setAdapter(unAdapter);
+
                     }
                 });
             }
@@ -94,18 +100,10 @@ public class MyCoachSuprem extends AppCompatActivity
         // démarrage du processus
         unT.start();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-            this, drawer,  R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -126,7 +124,7 @@ public class MyCoachSuprem extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.my_coach_suprem, menu);
+        getMenuInflater().inflate(R.menu.les_coachs, menu);
         return true;
     }
 
@@ -153,9 +151,6 @@ public class MyCoachSuprem extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
-            Intent intent = new Intent(this, MyCoachSuprem.class);
-            startActivity(intent);
-
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
@@ -165,8 +160,6 @@ public class MyCoachSuprem extends AppCompatActivity
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
-            Intent intent = new Intent(this, MesRdv.class);
-            startActivity(intent);
 
         }
 
@@ -174,19 +167,35 @@ public class MyCoachSuprem extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-    public static void setListe(ArrayList<Coach> uneL){
+
+    public static void setListe(ArrayList<Coach> uneL) {
         // accésseur sur la liste
-        MyCoachSuprem.uneListe=uneL;
+        LesCoachs.uneListe = uneL;
     }
 
-}
+    private void call() {
+        Intent in = new Intent(Intent.ACTION_CALL, Uri.parse("0000000000"));
+        try {
+            startActivity(in);
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(getApplicationContext(), "yourActivity is not founded", Toast.LENGTH_SHORT).show();
+        }
+    }
 
-class ExecListers extends AsyncTask<Void, Void, ArrayList<Coach>>
+
+    public void onClick(View v) {
+        switch (v.getId()) {
+
+
+        }
+    }
+}
+class ExecLister extends AsyncTask<Void, Void, ArrayList<Coach> >
 {
 
     @Override
     public  void onPostExecute (ArrayList<Coach> uneListe){
-        MyCoachSuprem.setListe(uneListe);
+        LesCoachs.setListe(uneListe);
     }
     @Override
     protected ArrayList<Coach> doInBackground(Void... unProd) {

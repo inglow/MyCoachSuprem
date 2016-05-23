@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Nom : "
+        android:id="@+id/textView2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/idnom"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/textView2"
+        android:layout_marginLeft="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Prénom :"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/idnom"
+        android:layout_marginLeft="50dp"
+        android:id="@+id/textView4" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/idprenom"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/textView4"
+        android:layout_marginLeft="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Localisation et discipline"
+        android:id="@+id/textView3"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp"
+        android:background="#ff0000"
+        android:textAlignment="center"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Code Postal :"
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"
+        android:id="@+id/textView6" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/idcp"
+        android:layout_below="@+id/textView3"
+        android:layout_toEndOf="@+id/textView6"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Discipline"
+        android:id="@+id/textView5"
+        android:layout_alignTop="@+id/idcp"
+        android:layout_alignStart="@+id/textView4" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/idavatar"
+        android:layout_alignTop="@+id/textView5"
+        android:layout_alignStart="@+id/idprenom" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contactez le par :"
+        android:id="@+id/textView7"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView6"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:textColor="#ffffff"
+        android:textAlignment="center"
+        android:background="#2daa00" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/imageView2"
+        android:layout_below="@+id/textView7"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/mail"
+        android:layout_marginLeft="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/idemail"
+        android:layout_alignTop="@+id/imageView2"
+        android:layout_toEndOf="@+id/imageView2"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/imageView3"
+        android:src="@drawable/telephone"
+        android:layout_alignTop="@+id/imageView2"
+        android:layout_alignStart="@+id/textView5" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/idtelephone"
+        android:layout_alignTop="@+id/imageView3"
+        android:layout_toEndOf="@+id/textView5"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp" />
+</RelativeLayout>

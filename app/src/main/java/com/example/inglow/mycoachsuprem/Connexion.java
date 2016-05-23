@@ -40,7 +40,7 @@ public class Connexion extends AppCompatActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connexion);
-        this.txtmail=(EditText)findViewById(R.id.idemail);
+        this.txtmail=(EditText)findViewById(R.id.idemail2);
         this.txtMdp=(EditText)findViewById(R.id.idmdp);
         this.btAnnuler= (Button) findViewById(R.id.idannuler);
         this.btSeConnecter=(Button)findViewById(R.id.idconnexion);
@@ -101,7 +101,7 @@ public class Connexion extends AppCompatActivity implements View.OnClickListener
                                 {
                                     Toast.makeText(st, "Bienvenue"+unUser.getNom()+""+unUser.getPrenom(),Toast.LENGTH_LONG).show();
                                     //appel de la vue du menu
-                                    Intent unIntent = new Intent(st, LesRdv.class);
+                                    Intent unIntent = new Intent(st, LesCoachs.class);
                                     unIntent.putExtra("nom", unUser.getNom());
                                     unIntent.putExtra("prenom", unUser.getPrenom());
                                     startActivity(unIntent);

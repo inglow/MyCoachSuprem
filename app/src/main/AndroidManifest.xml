@@ -35,6 +35,10 @@
         <activity
             android:name=".LesRdv"
             android:label="@string/title_activity_les_rdv"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".LesCoachs"
+            android:label="@string/title_activity_les_coachs"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
